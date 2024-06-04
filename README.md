@@ -1,5 +1,9 @@
 # a3d_exp
 
+## Local
+```
+docker run -it --rm --ipc=host --gpus all --net host nvcr.io/nvidian/dlmed/monai-toolkit:2.0 bash -c "git clone https://github.com/mingxin-zheng/a3d_exp.git && cd a3d_exp && python main.py"
+```
 
 ## NGC Base Command:
 

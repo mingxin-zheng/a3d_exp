@@ -1,6 +1,7 @@
 import os
 import json
 import random
+import argparse
 
 from monai.config import print_config
 from monai.apps import download_and_extract
@@ -71,6 +72,10 @@ def autogen_input(dataroot, datalist):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--num_node", type=int, default=1)
+    num_node = parser.parse_args().num_node
+
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
     if not os.path.exists(work_dir):
@@ -78,4 +83,6 @@ if __name__ == "__main__":
     dataroot, datalist = autogen_datalist()
     input_cfg = autogen_input(dataroot, datalist)
     runner = AutoRunner(input=input_cfg)
+    if num_node > 1:
+        runner.set_device_info(num_nodes=num_node)
     runner.run()
