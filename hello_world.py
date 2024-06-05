@@ -1,6 +1,6 @@
 import torch.distributed as dist
 import os
-import sys
+from time import sleep
 
 def main():
     
@@ -22,6 +22,7 @@ def main():
     if dist_available and dist.is_initialized():
         print(f"Process group rank: {dist.get_rank()}")
         print(f"Process group size: {dist.get_world_size()}")
+        sleep(5)
 
         # Synchronize processes
         dist.barrier()
