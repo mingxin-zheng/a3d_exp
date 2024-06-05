@@ -66,11 +66,6 @@ ngc base-command job run \
 	--commandline "
 git clone https://github.com/mingxin-zheng/a3d_exp.git && \
 cd a3d_exp && \
-export NGC_MASTER_ADDR=launcher-svc-\${NGC_JOB_ID} && \
-bcprun \
-  	--nnodes \$NGC_ARRAY_SIZE \
-  	--npernode \$NGC_GPUS_PER_NODE \
-	--cmd \"\
-	python debug.py\"
+python debug.py
 "
 ```
