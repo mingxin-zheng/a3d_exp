@@ -70,9 +70,6 @@ export NGC_MASTER_ADDR=launcher-svc-\${NGC_JOB_ID} && \
 bcprun \
   	--nnodes \$NGC_ARRAY_SIZE \
   	--npernode \$NGC_GPUS_PER_NODE \
-  	--env NCCL_DEBUG=WARN \
-  	--env TORCH_SHOW_CPP_STACKTRACES=1 \
-  	--env TORCH_DISTRIBUTED_DEBUG=DETAIL \
 	--cmd \"\
 	python debug.py\"
 "

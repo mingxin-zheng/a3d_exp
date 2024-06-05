@@ -20,11 +20,8 @@ def main():
         print(f"Process group initialized: {dist.is_initialized()}")
 
     if dist_available and dist.is_initialized():
-        print(f"Process group backend: {dist.get_backend()}")
         print(f"Process group rank: {dist.get_rank()}")
         print(f"Process group size: {dist.get_world_size()}")
-        print(f"Process group local rank: {dist.get_group_rank()}")
-        print(f"Process group local size: {dist.get_group_size()}")
 
         # Synchronize processes
         dist.barrier()
