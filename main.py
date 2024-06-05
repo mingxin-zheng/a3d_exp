@@ -82,7 +82,7 @@ if __name__ == "__main__":
         os.makedirs(work_dir)
     dataroot, datalist = autogen_datalist()
     input_cfg = autogen_input(dataroot, datalist)
-    runner = AutoRunner(input=input_cfg)
+    runner = AutoRunner(input=input_cfg, algos=['segresnet'])
     if num_node > 1:
         runner.set_device_info(num_nodes=num_node)
     runner.run()
