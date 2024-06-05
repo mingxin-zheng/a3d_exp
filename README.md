@@ -34,16 +34,20 @@ ngc base-command job run \
 	--total-runtime 2592000s \
 	--ace nv-us-west-2 \
 	--instance dgx1v.32g.8.norm \
-	--commandline "git clone https://github.com/mingxin-zheng/a3d_exp.git && cd a3d_exp && python main.py --num_node 2" \
 	--result /results \
 	--array-type "PYTORCH" \
 	--replicas "2" \
 	--image "nvidian/dlmed/monai:1.3.1-23.08" \
 	--org nvidian \
 	--team dlmed \
-	--label _wl___computer_vision
+	--label _wl___computer_vision \
+	--commandline "\
+git clone https://github.com/mingxin-zheng/a3d_exp.git && \
+cd a3d_exp && \
+python main.py --num_node 2
+" 
 
-# two
+# debug
 ngc base-command job run \
 	--name "ml-model.NOTPL_debug" \
 	--priority NORMAL \
@@ -52,12 +56,24 @@ ngc base-command job run \
 	--total-runtime 2592000s \
 	--ace nv-us-west-2 \
 	--instance dgx1v.32g.8.norm \
-	--commandline "git clone https://github.com/mingxin-zheng/a3d_exp.git; cd a3d_exp; bcprun -d -p 8 -c \"python debug.py\"" \
 	--result /results \
 	--array-type "PYTORCH" \
 	--replicas "2" \
 	--image "nvidian/dlmed/monai:1.3.1-23.08" \
 	--org nvidian \
 	--team dlmed \
-	--label _wl___computer_vision
+	--label _wl___computer_vision \
+	--commandline "
+git clone https://github.com/mingxin-zheng/a3d_exp.git && \
+cd a3d_exp && \
+export NGC_MASTER_ADDR=launcher-svc-\${NGC_JOB_ID} && \
+bcprun \
+  	--nnodes \$NGC_ARRAY_SIZE \
+  	--npernode \$NGC_GPUS_PER_NODE \
+  	--env NCCL_DEBUG=WARN \
+  	--env TORCH_SHOW_CPP_STACKTRACES=1 \
+  	--env TORCH_DISTRIBUTED_DEBUG=DETAIL \
+	--cmd \"\
+	python debug.py\"
+"
 ```
