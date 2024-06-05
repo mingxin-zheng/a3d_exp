@@ -52,7 +52,7 @@ ngc base-command job run \
 	--total-runtime 2592000s \
 	--ace nv-us-west-2 \
 	--instance dgx1v.32g.8.norm \
-	--commandline "git clone https://github.com/mingxin-zheng/a3d_exp.git && cd a3d_exp && bcprun -n 2 -p 8 -c \"python debug.py\"" \
+	--commandline "git clone https://github.com/mingxin-zheng/a3d_exp.git && cd a3d_exp && bcprun -d -p 8 -c \"python debug.py\"" \
 	--result /results \
 	--array-type "PYTORCH" \
 	--replicas "2" \
