@@ -8,9 +8,10 @@ def main():
     rank = int(os.getenv("LOCAL_RANK"))
     global_rank = int(os.getenv("RANK"))
     world_size = int(os.getenv("LOCAL_WORLD_SIZE"))
+    global_world_size = int(os.getenv("WORLD_SIZE"))
     
     # Print hello world with the rank of the process
-    print(f"Hello world from rank {rank}, global rank {global_rank}, world size {world_size}!")
+    print(f"Hello world from rank {rank}, global rank {global_rank}, world size {world_size}, global world size {global_world_size}!")
 
     dist_available = dist.is_available()
     dist.init_process_group(backend='nccl', init_method='env://')
