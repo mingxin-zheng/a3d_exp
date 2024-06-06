@@ -6,6 +6,6 @@ if __name__ == "__main__":
     # Launch the main function
     print("Starting", file=sys.stderr)
     sleep(10)
-    subprocess.run("bcprun --npernode 8 --async --cmd \"python hello_world.py\"", file=sys.stderr, shell=True, check=True)
+    subprocess.run("bcprun --npernode 8 --async --cmd \"python hello_world.py\"", shell=True, check=True)
     sleep(0.1)
     print("Finished", file=sys.stderr)
