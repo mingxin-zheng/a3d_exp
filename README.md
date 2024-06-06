@@ -37,7 +37,7 @@ ngc base-command job run \
 	--result /results \
 	--array-type "PYTORCH" \
 	--replicas "2" \
-	--image "nvidian/dlmed/monai:1.3.1-23.08" \
+	--image "nvidian/dlmed/monai_dev:20230913" \
 	--org nvidian \
 	--team dlmed \
 	--label _wl___computer_vision \
@@ -45,7 +45,29 @@ ngc base-command job run \
 git clone https://github.com/mingxin-zheng/a3d_exp.git && \
 cd a3d_exp && \
 python main.py --num_node 2
-" 
+"
+
+# interactive
+ngc base-command job run \
+	--name "ml-model.NOTPL_a3d_exp_3" \
+	--priority NORMAL \
+	--preempt RUNONCE \
+	--min-timeslice 2592000s \
+	--total-runtime 2592000s \
+	--ace nv-us-west-2 \
+	--instance dgx1v.32g.8.norm \
+	--result /results \
+	--array-type "PYTORCH" \
+	--replicas "2" \
+	--image "nvidian/dlmed/monai:1.3.1-23.08" \
+	--org nvidian \
+	--team dlmed \
+	--label _wl___computer_vision \
+	--commandline "\
+git clone https://github.com/mingxin-zheng/a3d_exp.git && \
+cd a3d_exp && \
+sleep 2d
+"
 
 # debug
 ngc base-command job run \

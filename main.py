@@ -64,7 +64,7 @@ def autogen_input(dataroot, datalist):
         "dataroot": dataroot,
         "multigpu": True,
     }
-    input_file = os.path.join(work_dir, "input.yaml")
+    input_file = os.path.join(work_dir, "task.yaml")
     with open(input_file, "w") as f:
         yaml.dump(input_dict, f)
     print(f"Input is saved to {input_file}")
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         os.makedirs(work_dir)
     dataroot, datalist = autogen_datalist()
     input_cfg = autogen_input(dataroot, datalist)
-    runner = AutoRunner(input=input_cfg, algos=['segresnet'])
-    if num_node > 1:
-        runner.set_device_info(num_nodes=num_node)
-    runner.run()
+    # runner = AutoRunner(input=input_cfg, algos=['segresnet'])
+    # if num_node > 1:
+    #     runner.set_device_info(num_nodes=num_node)
+    # runner.run()
