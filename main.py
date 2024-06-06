@@ -10,7 +10,7 @@ from monai.apps.auto3dseg import AutoRunner
 import yaml
 
 print_config()
-root_dir = "/root_dir"
+root_dir = "/workspace"
 work_dir = os.path.join(root_dir, "work_dir")
 
 

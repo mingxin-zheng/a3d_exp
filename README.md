@@ -46,11 +46,13 @@ ngc base-command job run --name "ml-model.NOTPL_interactive" \
 	--array-type "PYTORCH" \
 	--replicas "2" \
 	--label _wl___computer_vision \
+	--workspace sKg7ObGPSZa4pcaNXGhV9A:/workspace/ \
 	--commandline "\
+cd /workspace && \
 git clone https://github.com/mingxin-zheng/a3d_exp.git && \
 cd a3d_exp && \
 sleep 5h
-" # donotmiss
+" # end
 
 # debug
 ngc base-command job run --name "ml-model.NOTPL_debug" \
