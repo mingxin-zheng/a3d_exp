@@ -68,3 +68,5 @@ cd a3d_exp && \
 python debug.py
 " # donotmiss
 ```
+
+`export NGC_MASTER_ADDR=launcher-svc-\${NGC_JOB_ID}`
