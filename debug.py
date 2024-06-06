@@ -6,6 +6,6 @@ if __name__ == "__main__":
     # Launch the main function
     print("Starting", file=sys.stderr)
     sleep(10)
-    subprocess.run(['bcprun', '-p', '8', '-c', "python hello_world.py", "-a"])
+    subprocess.run(['bcprun', '-a', '-p', '8', '-c', "python hello_world.py"])
     sleep(0.1)
     print("Finished", file=sys.stderr)
